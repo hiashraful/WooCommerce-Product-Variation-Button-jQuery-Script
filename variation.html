@@ -1,0 +1,39 @@
+<div id="amount-buttons" class="button-group"></div>
+<button id="toggle-more" type="button">Show More</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    const maxVisibleButtons = 5; 
+    let isExpanded = false;
+
+    $('#amount option').each(function(index) {
+        if ($(this).val()) { 
+            const button = `<button type="button" class="amount-button" data-value="${$(this).val()}">${$(this).text()}</button>`;
+            $('#amount-buttons').append(button);
+        }
+    });
+
+    $('.amount-button').click(function() {
+        $('.amount-button').removeClass('active');
+        $(this).addClass('active');
+        $('#amount').val($(this).data('value')).change();
+    });
+
+    
+    const $buttons = $('#amount-buttons .amount-button');
+    $buttons.slice(maxVisibleButtons).hide();
+
+    $('#toggle-more').click(function() {
+        if (isExpanded) {
+            $buttons.slice(maxVisibleButtons).slideUp();
+            $(this).text('Show More');
+        } else {
+            $buttons.slice(maxVisibleButtons).slideDown();
+            $(this).text('Show Less');
+        }
+        isExpanded = !isExpanded;
+    });
+});
+</script>
