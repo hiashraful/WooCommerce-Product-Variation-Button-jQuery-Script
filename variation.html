@@ -1,4 +1,4 @@
-<div id="amount-buttons" class="button-group"></div>
+<div id="dev-variation-btns" class="button-group"></div>
 <button id="toggle-more" type="button">Show More</button>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -11,7 +11,7 @@ $(document).ready(function() {
     $('#amount option').each(function(index) {
         if ($(this).val()) { 
             const button = `<button type="button" class="amount-button" data-value="${$(this).val()}">${$(this).text()}</button>`;
-            $('#amount-buttons').append(button);
+            $('#dev-variation-btns').append(button);
         }
     });
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
     });
 
     
-    const $buttons = $('#amount-buttons .amount-button');
+    const $buttons = $('#dev-variation-btns .amount-button');
     $buttons.slice(maxVisibleButtons).hide();
 
     $('#toggle-more').click(function() {
